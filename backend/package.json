@@ -11,11 +11,11 @@
   },
   "dependencies": {
     "@langchain/openai": "^0.0.28",
-    "@wingcloud/framework": "^0.73.21",
+    "@wingcloud/framework": "^0.73.40",
     "@winglibs/react": "^0.0.3"
   },
   "devDependencies": {
     "@types/node": "^20",
-    "winglang": "^0.73.21"
+    "winglang": "^0.73.40"
   }
 }

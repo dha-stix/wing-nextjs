@@ -4,38 +4,44 @@ import { ChatPromptTemplate } from "@langchain/core/prompts";
 import React from "@winglibs/react";
 
 main((root, test) => {
-	let api = new cloud.Api(root, "api", { cors: true });
+	const api = new cloud.Api(root, "api", { cors: true });
+	const secret = new cloud.Secret(root, "OpenAPISecret", {
+		name: "open-ai-key",
+	});
 
 	api.post(
 		"/api",
-		inflight(async (ctx, request) => {
-			const data = JSON.parse(request.body!);
-			const apiKey = "";
+		lift({ secret })
+			.grant({ secret: ["value"] })
+			.inflight(async (ctx, request) => {
+				const apiKey = await ctx.secret.value();
 
-			const chatModel = new ChatOpenAI({ apiKey });
+				const data = JSON.parse(request.body!)
 
-			const prompt = ChatPromptTemplate.fromMessages([
-				[
-					"system",
-					"You are a webscraper that retrieves information about websites. Ask me anything about a website and I will try to answer it.",
-				],
-				["user", "{input}"],
-			]);
-			const chain = prompt.pipe(chatModel);
+				const chatModel = new ChatOpenAI({ apiKey });
 
-			const response = await chain.invoke({
-				input: `${data.question} using this website information: ${data.websiteData}`,
-			});
+				const prompt = ChatPromptTemplate.fromMessages([
+					[
+						"system",
+						"You are a webscraper that retrieves information about websites. Ask me anything about a website and I will try to answer it.",
+					],
+					["user", "{input}"],
+				]);
+				const chain = prompt.pipe(chatModel);
 
-			if (response?.content) {
-				return {
-					status: 200,
-					body: response.content,
-				};
-			}
+				const response = await chain.invoke({
+					input: `${data.question} using this website information: ${data.websiteData}`,
+				});
 
-			return undefined;
-		})
+				if (typeof response.content === "string") {
+					return {
+						status: 200,
+						body: response.content
+					};
+				}
+
+				return undefined;
+			})
 	);
 
 	api.get(

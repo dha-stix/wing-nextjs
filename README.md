@@ -1,15 +1,15 @@
 ## Getting Started
 
 - Clone the repository
+
+- Ensure you have the latest version of Wing installed on your computer.
+  ```bash
+  npm install -g winglang@latest
+  ```
   
 - Run `npm install` within the `frontend` and `backend` folders to install the project dependencies
   ```bash
   npm install
-  ```
-  
-- Ensure you have the latest version of Wing installed on your computer.
-  ```bash
-  npm install -g winglang@latest
   ```
   
 - Run `wing secrets` in your terminal and paste your OpenAI API Key into the field.

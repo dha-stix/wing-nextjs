@@ -19,7 +19,7 @@
   cd frontend
   npm run build
   ```
-  - Finally, start the Wing server. It automatically starts the Next.js server.
+- Finally, start the Wing server. It automatically starts the Next.js server.
     ```bash
     cd backend
     wing it

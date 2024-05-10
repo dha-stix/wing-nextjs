@@ -12,7 +12,7 @@
   npm install
   ```
   
-- Run `wing secrets` in your terminal and paste your OpenAI API Key into the field.
+- Run `wing secrets` in your backend terminal and paste your OpenAI API Key into the field.
   
 - Build the `Next.js` app by running `npm run build`.
   ```bash

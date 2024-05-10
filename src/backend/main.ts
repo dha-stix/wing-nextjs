@@ -10,7 +10,7 @@ main((root, test) => {
 		"/api",
 		inflight(async (ctx, request) => {
 			const data = JSON.parse(request.body!);
-			let apiKey;
+			const apiKey = "";
 
 			const chatModel = new ChatOpenAI({ apiKey });
 

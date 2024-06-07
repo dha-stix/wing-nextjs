@@ -10,12 +10,15 @@
     "test": "wing test main.ts"
   },
   "dependencies": {
-    "@langchain/openai": "^0.0.28",
-    "@wingcloud/framework": "^0.73.40",
-    "@winglibs/react": "^0.0.3"
+    "@langchain/community": "^0.2.9",
+    "@langchain/openai": "^0.1.2",
+    "@wingcloud/framework": "^0.74.41",
+    "@winglibs/react": "^0.1.0",
+    "cheerio": "^1.0.0-rc.12",
+    "langchain": "^0.2.5"
   },
   "devDependencies": {
     "@types/node": "^20",
-    "winglang": "^0.73.40"
+    "winglang": "^0.74.41"
   }
 }
